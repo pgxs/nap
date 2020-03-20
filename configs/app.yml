@@ -1,0 +1,35 @@
+#app settings
+app:
+  name: nap
+  version: 1.1.0
+  env: local
+server:
+  port: 8000
+logging:
+  level: 5  #0 panic 0 fatal 1 error 2 warn 3 info 4 debug 5 trace 6
+  report-caller: false
+database:
+  dsn: "root:@tcp(database:3306)/nap?parseTime=true&loc=Asia%2FShanghai&multiStatements=true"
+  maxIndle: 10
+  maxOpen: 50
+  maxLifetime: 50  #单位秒 If d <= 0, connections are reused forever.  
+  showSQL: true
+openapi:
+  spec:
+    title: nap apiserver
+    desc: nginx admin panel.
+    contact:
+      name: Veily
+      email: drmfly.liw@gmail.com
+      url: https://nap.pgxs.io
+    license:
+      name: test
+      url: test
+    version: 1.0
+  tags:
+    - name: Admin
+      desc: admin api
+  ui:
+    api: /apidocs.json
+    dist: ./api/swagger-ui/
+    entrypoint: /apidocs/
