@@ -16,15 +16,14 @@ type _TemplateResourceConfig struct {
 }
 
 func main() {
+	//libconfd.GetLogger().SetLevel("debug")
 	//
-	res := libconfd.TemplateResource{Src: "test.toml", Dest: "test.conf", Keys: []string{"/test"},ReloadCmd:"docker ps",CheckCmd:"docker ps -a"}
+	res := libconfd.TemplateResource{Src: "test.toml", Dest: "test.conf", Keys: []string{"/test"}, ReloadCmd: "docker ps", CheckCmd: "docker ps -a"}
 	resCfg := &_TemplateResourceConfig{res}
 
 	if err := toml.NewEncoder(os.Stdout).Encode(resCfg); err != nil {
 		log.New().Fatal(err)
 	}
-
-
 
 	cfg := libconfd.MustLoadConfig("./configs/agent.yml")
 	backendCfg := libconfd.MustLoadBackendConfig("./configs/agent-backend.yml")

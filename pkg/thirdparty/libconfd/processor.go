@@ -160,6 +160,7 @@ func (p *Processor) Run(cfg *Config, client BackendClient, opts ...Options) erro
 		GetLogger().Error(err)
 		return err
 	}
+	//set logger level
 	if client == nil {
 		GetLogger().Panic("client is nil")
 	}

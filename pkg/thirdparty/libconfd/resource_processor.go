@@ -91,7 +91,7 @@ func NewTemplateResourceProcessor(
 		}
 	}
 
-	if config.Prefix != "" {
+	if config.Prefix == "" {
 		tr.Prefix = config.Prefix
 	}
 
