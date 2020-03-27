@@ -1,9 +1,13 @@
+# Copyright 2018 The OpenPitrix Authors. All rights reserved.
+# Use of this source code is governed by a Apache license
+# that can be found in the LICENSE file.
+
 # The path to confd configs.
 # If the confdir is rel path, must convert to abs path.
 #
 # abspath = filepath.Join(ConfigPath, Config.ConfDir)
 #
-confdir = "./../testdata/agent"
+confdir = "./testdata/confd"
 
 # The backend polling interval in seconds. (10)
 interval = 10
@@ -15,19 +19,19 @@ noop = false
 prefix = "/"
 
 # sync without check_cmd and reload_cmd.
-sync-only = false
+sync-only = true
 
 # level which confd should log messages ("DEBUG")
 log-level = "DEBUG"
 
 # run once and exit
-onetime = false
+onetime = true
 
 # enable watch support
-watch = true
+watch = false
 
 # the TOML backend file to watch for changes
-#file = "./confd/backend-file.toml"
+file = "./confd/backend-file.toml"
 
 # keep staged files
 keep-stage-file = false

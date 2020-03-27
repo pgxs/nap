@@ -1,6 +1,6 @@
 [template]
 src = "simple.json.tmpl"
-dest = "simple.json"
+dest = "/Users/liwei/MyWorkspace/go/nap/simple.json"
 keys = [
   "/key"
 ]
