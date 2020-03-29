@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"pgxs.io/nap/pkg/config"
 
 	"github.com/BurntSushi/toml"
 	"pgxs.io/chassis/log"
@@ -16,6 +17,7 @@ type _TemplateResourceConfig struct {
 }
 
 func main() {
+	config.Init()
 	//libconfd.GetLogger().SetLevel("debug")
 	//
 	res := libconfd.TemplateResource{Src: "test.toml", Dest: "test.conf", Keys: []string{"/test"}, ReloadCmd: "docker ps", CheckCmd: "docker ps -a"}
@@ -25,15 +27,13 @@ func main() {
 		log.New().Fatal(err)
 	}
 
-	cfg := libconfd.MustLoadConfig("./configs/agent.yml")
-	backendCfg := libconfd.MustLoadBackendConfig("./configs/agent-backend.yml")
-	//logger := log.New().Component("agent").Category("starter")
-	//logger.Infof("%+v", backendCfg)
-	fmt.Printf("%+v", backendCfg)
-	backendClient, err := libconfd.NewBackendClient(backendCfg)
+	cfg := config.MustLoadAgentConfig("./configs/agent.yml")
+
+	fmt.Printf("%+v\n%+v", cfg.Etcd, cfg.Confd)
+	backendClient, err := libconfd.NewBackendClient(cfg.Etcd)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	libconfd.NewProcessor().Run(cfg, backendClient)
+	libconfd.NewProcessor().Run(cfg.Confd, backendClient)
 }

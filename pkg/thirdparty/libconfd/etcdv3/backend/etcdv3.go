@@ -22,7 +22,7 @@ var (
 	_ libconfd.BackendClient = (*_EtcdClient)(nil)
 )
 
-const Etcdv3BackendType = "libconfd-backend-etcdv3"
+const Etcdv3BackendType = "etcdv3"
 
 func init() {
 	libconfd.RegisterBackendClient(
@@ -44,7 +44,7 @@ type _EtcdClient struct {
 
 func NewEtcdClient(cfg *libconfd.BackendConfig) (libconfd.BackendClient, error) {
 	etcdConfig := clientv3.Config{
-		Endpoints:            cfg.Host,
+		Endpoints:            cfg.Endpoints,
 		DialTimeout:          5 * time.Second,
 		DialKeepAliveTime:    10 * time.Second,
 		DialKeepAliveTimeout: 3 * time.Second,

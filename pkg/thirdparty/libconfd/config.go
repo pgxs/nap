@@ -34,10 +34,6 @@ type Config struct {
 	// sync without check_cmd and reload_cmd.
 	SyncOnly bool `yaml:"sync-only"`
 
-	// level which confd should log messages
-	// DEBUG/INFO/WARN/ERROR/PANIC
-	LogLevel string ` yaml:"log-level"`
-
 	// run once and exit
 	Onetime bool `yaml:"onetime"`
 
@@ -146,9 +142,9 @@ func (p *Config) Valid() error {
 	if p.Interval < 0 {
 		return fmt.Errorf("invalid Interval: %d", p.Interval)
 	}
-	if p.LogLevel != "" && !newLogLevel(p.LogLevel).Valid() {
-		return fmt.Errorf("invalid LogLevel: %s", p.LogLevel)
-	}
+	//if p.LogLevel != "" && !newLogLevel(p.LogLevel).Valid() {
+	//	return fmt.Errorf("invalid LogLevel: %s", p.LogLevel)
+	//}
 
 	return nil
 }

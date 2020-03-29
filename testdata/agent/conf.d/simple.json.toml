@@ -1,17 +1,16 @@
 [template]
-src = "simple.json.tmpl"
-dest = "/Users/liwei/MyWorkspace/go/nap/simple.json"
+src = "simple.json2.tmpl"
+dest = "ab.com.nginx"
+prefix = "/pgxs/nap/"
 keys = [
-  "/key"
+  "service/ab.com/config"
 ]
-gid = 1000
-uid =  1000
-mode = "0644"
+
 
 check_cmd = """
-    etcdctl get key --user="root" --password="123456"
+    ls -al .
 """
 
 reload_cmd = """
-	etcdctl get key --user="root" --password="123456"
+	etcdctl get /key
 """

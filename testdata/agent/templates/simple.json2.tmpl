@@ -1,0 +1,6 @@
+{{if exists "/pgxs/nap/service/ab.com/config/http"}}{{$data :=json (getv "/pgxs/nap/service/ab.com/config/http")}}server {
+    listen {{$data.port}};
+    server_name{{range $data.hosts}} {{.}}{{end}};
+    root {{$data.root}};
+}
+{{end}}

@@ -11,8 +11,8 @@ import (
 )
 
 type BackendConfig struct {
-	Type string
-	Host []string `yaml:",flow"`
+	Type      string
+	Endpoints []string `yaml:",flow"`
 
 	UserName string `yaml:"user"`
 	Password string `yaml:"password"`
@@ -26,7 +26,7 @@ type BackendConfig struct {
 
 func (p *BackendConfig) Clone() *BackendConfig {
 	var q = *p
-	q.Host = append([]string{}, p.Host...)
+	q.Endpoints = append([]string{}, p.Endpoints...)
 	return &q
 }
 

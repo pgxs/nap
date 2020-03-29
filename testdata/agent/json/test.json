@@ -1,0 +1,12 @@
+{
+  "port": 80,
+  "hosts": [
+    "liwei.co",
+    "www.liwei.co"
+  ],
+  "redir": {
+    "host": "",
+    "scheame": "https"
+  },
+  "root": "/www/wwwroot/abc.com"
+}

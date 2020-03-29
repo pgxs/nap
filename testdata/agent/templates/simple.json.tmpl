@@ -1,3 +1,7 @@
-{
-	"./key": "{{getv "/key"}}"
+server {
+{{get "/pgxs/nap/service/test.liwei.co/conf"}}
+listen {{.Port}}
+    listen {{getv "/pgxs/nap/service/servicename/http_port}};
+    {{range getvs "/pgxs/nap/service/servicename/hosts"}}value: {{.}}{{end}}
+    server_name liwei.blog www.liwei.blog;
 }
